@@ -1,10 +1,9 @@
 import { useParams } from 'react-router-dom';
-import useAuthorize from '../hooks/useAuthorize';
+import useAuthorization from '../hooks/useAuthorization';
 
 export default function Drink() {
-  const {isAuthorized} = useAuthorize();
-
-  if (!isAuthorized) throw new Error('Not Authorized')
+  const {getJwt} = useAuthorization();
+  if (getJwt() === null) throw new Error('Not Authorized')
 
   const { id } = useParams();
   return (

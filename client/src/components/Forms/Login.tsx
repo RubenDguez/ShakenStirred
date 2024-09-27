@@ -26,7 +26,6 @@ export default function Login({ setIsLogin }: { setIsLogin: Dispatch<React.SetSt
   return (
     <motion.div
       style={{
-        backgroundColor: 'blue',
         width: '1300px',
         height: '600px',
         overflow: 'hidden',

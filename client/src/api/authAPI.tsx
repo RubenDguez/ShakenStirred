@@ -1,9 +1,10 @@
 interface IUser {
-  username: string;
   email: string;
+  username: string;
+  password: string;
 }
 
-const login = async (userInfo: IUser) => {
+const login = async (userInfo: Omit<IUser, 'email'>) => {
   try {
     const response = await fetch('/auth/login', {
       method: 'POST',

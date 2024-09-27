@@ -1,10 +1,19 @@
 import { AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Login from '../components/Forms/Login';
 import Register from '../components/Forms/Register';
+import useAuthorization from '../hooks/useAuthorization';
+import { useNavigate } from 'react-router-dom';
 
 export default function LandingPage() {
   const [isLogin, setIsLogin] = useState(true);
+
+  const {getJwt, isJwtExpired} = useAuthorization();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (getJwt() !== null && !isJwtExpired()) navigate('/app');
+  }, [getJwt, isJwtExpired, navigate])
 
   return (
     <div

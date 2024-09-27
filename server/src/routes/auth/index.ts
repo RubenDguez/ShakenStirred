@@ -1,13 +1,15 @@
 import { Router, Request, Response } from 'express';
-import { User } from '../../models/user.js';
+
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import { User } from '../../models/index.js';
 
 export const login = async (req: Request, res: Response) => {
   const { username, password } = req.body;
   
   const user = await User.findOne({
     where: { username },
+    logging: false,
   });
 
   if (!user) {
@@ -28,7 +30,8 @@ export const login = async (req: Request, res: Response) => {
 export const signUp = async (req: Request, res: Response) => {
   try {
     const { username, email, password } = req.body;
-    const newUser = await User.create({ username, email, password, role: 'user' });
+
+    const newUser = await User.create({ username, email, password }, {logging: false});
 
     const secretKey = process.env.JWT_SECRET_KEY || '';
     const token = jwt.sign({ username: newUser.username }, secretKey, { expiresIn: '1h' });
