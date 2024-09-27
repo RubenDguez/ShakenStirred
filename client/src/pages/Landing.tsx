@@ -12,6 +12,8 @@ export default function LandingPage() {
         height: '100vh',
         display: 'grid',
         gridTemplateRows: 'auto 1fr',
+        maxWidth: 1200,
+        margin: '0px auto'
       }}
     >
       <div>

@@ -1,12 +1,18 @@
 import { motion } from 'framer-motion';
 import { Dispatch, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login({ setIsLogin }: { setIsLogin: Dispatch<React.SetStateAction<boolean>> }) {
+  const navigate = useNavigate();
+
   const handleLoginFormSubmission = useCallback((e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     e.preventDefault();
     e.stopPropagation();
+
+    navigate('/app');
+
     console.log('start login in process...');
-  }, []);
+  }, [navigate]);
 
   const handleSwitchLoginSignup = useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
