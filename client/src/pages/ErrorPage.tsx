@@ -1,8 +1,25 @@
 const ErrorPage = () => {
   return (
-    <section>
-      <h1>404: Page Not Found</h1>
-      <h1> ¯\_(ツ)_/¯</h1>
+    <section
+      style={{
+        display: 'grid',
+        placeContent: 'center',
+        height: '98vh',
+      }}
+    >
+      <div style={{
+        display: "flex",
+        alignItems: "center"
+      }}>
+        <h2 style={{
+          paddingRight: '1rem',
+          marginRight: '1rem',
+          borderRight: '2px solid black'
+        }}>404</h2>
+        <p style={{
+          textTransform: 'uppercase'
+        }}>Page not found</p>
+      </div>
     </section>
   );
 };
