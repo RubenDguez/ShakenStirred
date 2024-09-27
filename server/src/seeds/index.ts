@@ -3,11 +3,11 @@ import sequelize from '../config/connection.js';
 
 const seedAll = async (): Promise<void> => {
   try {
-    await sequelize.sync({ force: true });
-    console.log('\n----- DATABASE SYNCED -----\n');
+    await sequelize.sync({ force: true, logging: false });
+    console.log('> DATABASE SYNCED');
     
     await seedUsers();
-    console.log('\n----- USERS SEEDED -----\n');
+    console.log('> USERS SEEDED');
     
     process.exit(0);
   } catch (error) {

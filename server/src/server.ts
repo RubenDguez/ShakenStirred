@@ -1,7 +1,7 @@
 const forceDatabaseRefresh = false;
 
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config({path: '../../.env'});
 
 import express from 'express';
 import sequelize from './config/connection.js';
