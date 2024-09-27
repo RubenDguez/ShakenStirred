@@ -1,9 +1,11 @@
 import { User } from '../models/index.js';
 
+const { DEV_USERNAME, DEV_PASSWORD } = process.env
+
 export const seedUsers = async () => {
+  if (!DEV_USERNAME || !DEV_PASSWORD) return;
+
   await User.bulkCreate([
-    { username: 'JollyGuru', email: 'jolly@guru.com', password: 'password' },
-    { username: 'SunnyScribe', email: 'sunny@scribe.com', password: 'password' },
-    { username: 'RadiantComet', email: 'radiant@comet.com', password: 'password' },
+    { username: DEV_USERNAME, email: 'current.dev@shakenstirred.com', password: DEV_PASSWORD },
   ], { individualHooks: true, logging: false });
 };
