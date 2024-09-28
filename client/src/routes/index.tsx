@@ -4,6 +4,10 @@ import LandingPage from '../pages/Landing';
 import App from '../App';
 import Drink from '../pages/Drink';
 import Main from '../pages/App/Main';
+import NewDrink from '../pages/App/NewDrink';
+import MyDrinks from '../pages/App/MyDrinks';
+import SearchDrinks from '../pages/App/SearchDrinks';
+import User from '../pages/App/User';
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +28,22 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Main />
+      },
+      {
+        path: '/app/new',
+        element: <NewDrink />,
+      },
+      {
+        path: '/app/my-drinks',
+        element: <MyDrinks />,
+      },
+      {
+        path: '/app/search',
+        element: <SearchDrinks />,
+      },
+      {
+        path: '/app/user',
+        element: <User />,
       },
       {
         path: '/app/drink',

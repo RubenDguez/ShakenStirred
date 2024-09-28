@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import useAuthorization from './hooks/useAuthorization';
 import Navbar from './components/Navbar';
+import useAuthorization from './hooks/useAuthorization';
 
 function App() {
   useAuthorization();
@@ -13,13 +13,11 @@ function App() {
         maxWidth: '1200px',
         height: '100vh',
         display: 'grid',
-        gridTemplateRows: 'auto 1fr auto'
+        gridTemplateRows: 'auto 1fr auto',
       }}
     >
-    <Navbar />
-      <div>
-        <Outlet />
-      </div>
+      <Navbar />
+      <Outlet />
     </main>
   );
 }

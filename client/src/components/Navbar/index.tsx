@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { useNavigate, useNavigation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const NAVIGATION_BUTTONS = [
+  { label: 'home', to: '/app' },
   { label: 'new', to: '/app/new' },
   { label: 'my drinks', to: '/app/my-drinks' },
   { label: 'search', to: '/app/search' },
@@ -22,8 +23,8 @@ export default function Navbar() {
       exit={{ opacity: 0 }}
     >
       <motion.h2
-        initial={{ opacity: 0, scale: 0, x: '-300px' }}
-        animate={{ opacity: 1, scale: 1, x: 0 }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.25, ease: 'easeInOut' }}
         exit={{ opacity: 0, scale: 0 }}
       >
@@ -90,7 +91,8 @@ function NavbarAvatar({ src }: { src: string }) {
 }
 
 function NavbarButton({ children, to }: { children: string; to: string }) {
-  const { location } = useNavigation();
+  const { pathname } = useLocation();
+
   const navigate = useNavigate();
   return (
     <motion.button
@@ -98,12 +100,12 @@ function NavbarButton({ children, to }: { children: string; to: string }) {
       style={{
         padding: '0.35rem 0.75rem',
         cursor: 'pointer',
-        border: 'none',
-        borderRadius: '4px',
         backgroundColor: 'transparent',
         textTransform: 'uppercase',
         fontSize: 'small',
-        color: location?.pathname.includes(to) ? 'black' : 'gray',
+        border: 'none',
+        color: (pathname === to) ? 'black' : 'gray',
+        fontWeight: (pathname === to) ? '600' : 'normal',
       }}
       layout
       initial={{ opacity: 0, scale: 0 }}
