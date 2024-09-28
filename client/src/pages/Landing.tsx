@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 export default function LandingPage() {
   const [isLogin, setIsLogin] = useState(true);
 
-  const {getJwt, isJwtExpired} = useAuthorization();
+  const {getJwt, isJwtExpired} = useAuthorization({secure: false});
   const navigate = useNavigate();
 
   useEffect(() => {

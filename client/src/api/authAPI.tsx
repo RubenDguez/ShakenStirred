@@ -22,9 +22,9 @@ const login = async (userInfo: Omit<IUser, 'email'>) => {
     const data = await response.json();
 
     return data;
-  } catch (err) {
-    console.log('Error from user login: ', err);
-    return Promise.reject('Could not fetch user info');
+  } catch (error) {
+    const ERROR = error as Error;
+    return Promise.reject(ERROR.message);
   }
 }
 
@@ -46,9 +46,9 @@ const signUp = async (userInfo: IUser) => {
     const data = await response.json();
 
     return data;
-  } catch (err) {
-    console.log('Error from user login: ', err);
-    return Promise.reject('Could not fetch user info');
+  } catch (error) {
+    const ERROR = error as Error;
+    return Promise.reject(ERROR.message);
   }
 }
 

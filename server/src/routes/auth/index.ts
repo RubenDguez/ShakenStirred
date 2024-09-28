@@ -37,7 +37,15 @@ export const signUp = async (req: Request, res: Response) => {
     const token = jwt.sign({ username: newUser.username }, secretKey, { expiresIn: '1h' });
     res.json({ token });
   } catch (error: any) {
-    res.status(400).json({ message: error.message });
+    const ERROR = error as Error;
+
+    switch(ERROR.name) {
+      case 'SequelizeUniqueConstraintError':
+        res.status(400).json({ message: error.errors[0].message })
+        break;
+      default:
+        res.status(400).json({ message: error.message });
+    }
   }
 }
 

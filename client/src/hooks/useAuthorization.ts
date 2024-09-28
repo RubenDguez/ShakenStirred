@@ -1,6 +1,7 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
+import { json } from "react-router-dom";
 
-export default function useAuthorization() {
+export default function useAuthorization(options = {secure: true}) {
     const setJwt = useCallback((token: string) => {
         window.localStorage.setItem('jwt', token);
     }, []);
@@ -17,6 +18,10 @@ export default function useAuthorization() {
         const expiration = jwtData.exp * 1000;
         return Date.now() >= expiration;
     }, [getJwt]);
+
+    useEffect(() => {
+        if (options.secure && getJwt() === null) throw json({ message: 'Unauthorized' }, { status: 401 });
+    }, [getJwt, options.secure]);
 
     return {setJwt, getJwt, isJwtExpired}
 }

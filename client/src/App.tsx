@@ -1,9 +1,7 @@
-import { json } from "react-router-dom";
-import useAuthorization from "./hooks/useAuthorization";
+import useAuthorization from './hooks/useAuthorization';
 
 function App() {
-  const {getJwt} = useAuthorization()
-  if (getJwt() === null) throw json({ message: 'Unauthorized' }, { status: 401 });
+  useAuthorization();
 
   return (
     <>

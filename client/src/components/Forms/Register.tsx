@@ -24,8 +24,7 @@ export default function Register({ setIsLogin }: { setIsLogin: Dispatch<React.Se
   const handleLoginFormSubmission = useCallback(async(e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('start registration in process...');
-
+    
     const email = emailRef.current?.value;
     const username = usernameRef.current?.value;
     const password = passwordRef.current?.value;
@@ -81,7 +80,8 @@ export default function Register({ setIsLogin }: { setIsLogin: Dispatch<React.Se
 
       formRef.current?.reset()
     } catch (error) {
-      console.error(error);
+      const ERROR = error as string;
+      setError(ERROR)
     }
 
   }, [authorization]);
