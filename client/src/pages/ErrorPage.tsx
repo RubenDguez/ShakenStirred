@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useRouteError } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const ErrorPage = () => {
   const [message, setMessage] = useState({ status: 404, description: 'Page not found' });
@@ -16,7 +17,11 @@ const ErrorPage = () => {
   }, [error.status]);
 
   return (
-    <section
+    <motion.section
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1 }}
+      exit={{ opacity: 0, scale: 0 }}
       style={{
         display: 'grid',
         placeContent: 'center',
@@ -39,11 +44,13 @@ const ErrorPage = () => {
         >
           {message.status}
         </h2>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '0.35rem'
-        }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.35rem',
+          }}
+        >
           <p
             style={{
               textTransform: 'uppercase',
@@ -51,12 +58,17 @@ const ErrorPage = () => {
           >
             {message.description}
           </p>
-          <Link style={{
-            textDecoration: 'none',
-          }} to="/">Let&apos;s get you back to home</Link>
+          <Link
+            style={{
+              textDecoration: 'none',
+            }}
+            to="/"
+          >
+            Let&apos;s get you back to home
+          </Link>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
