@@ -12,14 +12,14 @@ export default function Register({ setIsLogin }: { setIsLogin: Dispatch<React.Se
   const passwordRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
-  const authorization = useAuthorization()
+  const {isJwtExpired, setJwt} = useAuthorization({secure: false})
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!authorization.isJwtExpired()) {
+    if (!isJwtExpired()) {
       navigate('/app')
     }
-  }, [authorization, navigate]);
+  }, [isJwtExpired, navigate]);
 
   const handleLoginFormSubmission = useCallback(async(e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     e.preventDefault();
@@ -76,7 +76,7 @@ export default function Register({ setIsLogin }: { setIsLogin: Dispatch<React.Se
 
     try {
       const response = await signUp({email, username, password});
-      authorization.setJwt(response.token);
+      setJwt(response.token);
 
       formRef.current?.reset()
     } catch (error) {
@@ -84,7 +84,7 @@ export default function Register({ setIsLogin }: { setIsLogin: Dispatch<React.Se
       setError(ERROR)
     }
 
-  }, [authorization]);
+  }, [setJwt]);
 
   const handleSwitchLoginSignup = useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

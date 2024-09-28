@@ -1,18 +1,42 @@
 import { motion } from 'framer-motion';
-import { Dispatch, useCallback } from 'react';
+import { Dispatch, useCallback, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useAuthorization from '../../hooks/useAuthorization';
+import { login } from '../../api/authAPI';
 
 export default function Login({ setIsLogin }: { setIsLogin: Dispatch<React.SetStateAction<boolean>> }) {
+  const {setJwt} = useAuthorization({secure: false});
+
+  const [error, setError] = useState('');
+
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
   const navigate = useNavigate();
 
-  const handleLoginFormSubmission = useCallback((e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+  const handleLoginFormSubmission = useCallback(async(e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     e.preventDefault();
     e.stopPropagation();
 
-    navigate('/app');
+    const username = usernameRef.current?.value;
+    const password = passwordRef.current?.value;
 
-    console.log('start login in process...');
-  }, [navigate]);
+    if (!username || !password) {
+      setError('All fields are required');
+      usernameRef.current?.focus()
+      return;
+    }
+
+    try {
+      const response = await login({username, password});
+      setJwt(response.token);
+      navigate('/app');
+    } catch (error) {
+      const ERROR = error as string;
+      setError(ERROR)
+    }
+  }, [navigate, setJwt]);
 
   const handleSwitchLoginSignup = useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -87,6 +111,7 @@ export default function Login({ setIsLogin }: { setIsLogin: Dispatch<React.SetSt
           }}
         >
           <form
+            ref={formRef}
             style={{
               width: '400px',
               display: 'flex',
@@ -94,6 +119,22 @@ export default function Login({ setIsLogin }: { setIsLogin: Dispatch<React.SetSt
               gap: '1rem',
             }}
           >
+            {error !== '' && (
+              <h5
+                style={{
+                  backgroundColor: 'tomato',
+                  color: 'orange',
+                  width: '100%',
+                  padding: '0.5rem 1rem',
+                  marginBottom: '1rem',
+                  textAlign: 'center',
+                  borderRadius: '4px',
+                  textTransform: 'uppercase',
+                }}
+              >
+                {error}
+              </h5>
+            )}
             <div
               style={{
                 display: 'flex',
@@ -104,6 +145,7 @@ export default function Login({ setIsLogin }: { setIsLogin: Dispatch<React.SetSt
             >
               <label htmlFor="username">Username</label>
               <input
+                ref={usernameRef}
                 style={{
                   padding: '0.5rem',
                   border: 'none',
@@ -124,6 +166,7 @@ export default function Login({ setIsLogin }: { setIsLogin: Dispatch<React.SetSt
             >
               <label htmlFor="password">Password</label>
               <input
+                ref={passwordRef}
                 style={{
                   padding: '0.5rem',
                   border: 'none',
