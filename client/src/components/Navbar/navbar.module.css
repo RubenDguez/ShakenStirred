@@ -1,0 +1,39 @@
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0px;
+    background-color: transparent;
+}
+
+.brand {
+    color: var(--primary);
+    font-weight: 400;
+    font-size: 1.75rem;
+    cursor: pointer;
+}
+
+.buttonSection {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    background-color: transparent;
+}
+
+.avatar {
+    cursor: pointer;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    background-position: center;
+    background-size: cover;
+}
+
+.navbarButton {
+    padding: 0.35rem 0.75rem;
+    cursor: pointer;
+    background-color: transparent;
+    text-transform: uppercase;
+    font-size: small;
+    color: var(--accent);
+}

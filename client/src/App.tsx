@@ -14,6 +14,7 @@ function App() {
         height: '100vh',
         display: 'grid',
         gridTemplateRows: 'auto 1fr auto',
+        backgroundColor: 'transparent',
       }}
     >
       <Navbar />

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
+import styles from './navbar.module.css';
 
 const NAVIGATION_BUTTONS = [
   { label: 'home', to: '/app' },
@@ -10,40 +11,18 @@ const NAVIGATION_BUTTONS = [
 
 export default function Navbar() {
   return (
-    <motion.nav
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '1rem 0px',
-      }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1, ease: 'easeInOut' }}
-      exit={{ opacity: 0 }}
-    >
+    <motion.nav initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, ease: 'easeInOut' }} exit={{ opacity: 0 }} className={`${styles.navigation}`}>
       <motion.h2
+        className={`${styles.brand}`}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.25, ease: 'easeInOut' }}
         exit={{ opacity: 0, scale: 0 }}
       >
-        Shaken &amp; Stirred
+        Shake &apos;N Stirred
       </motion.h2>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '2rem',
-        }}
-      >
-        <motion.div
-          layout
-          style={{
-            display: 'flex',
-            gap: '1rem',
-          }}
-        >
+      <div className={`${styles.buttonSection}`}>
+        <motion.div layout>
           {NAVIGATION_BUTTONS.map((button) => (
             <NavbarButton key={button.label} to={button.to}>
               {button.label}
@@ -61,15 +40,8 @@ function NavbarAvatar({ src }: { src: string }) {
   return (
     <motion.div
       onClick={() => navigate('/app/user')}
-      style={{
-        cursor: 'pointer',
-        borderRadius: '50%',
-        backgroundImage: `url(${src})`,
-        width: '64px',
-        height: '64px',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-      }}
+      style={{ backgroundImage: `url(${src})` }}
+      className={`${styles.avatar}`}
       layout
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -77,16 +49,7 @@ function NavbarAvatar({ src }: { src: string }) {
       exit={{ opacity: 0, scale: 0 }}
       whileHover={{ scale: 1.25, rotate: '5deg' }}
       whileTap={{ scale: 1.15, rotate: '0deg' }}
-    >
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          borderRadius: '50%',
-          backdropFilter: 'grayscale(100%)',
-        }}
-      ></div>
-    </motion.div>
+    ></motion.div>
   );
 }
 
@@ -96,17 +59,9 @@ function NavbarButton({ children, to }: { children: string; to: string }) {
   const navigate = useNavigate();
   return (
     <motion.button
+      className={styles.navbarButton}
+      style={{ fontWeight: pathname === to ? '600' : '300' }}
       onClick={() => navigate(to)}
-      style={{
-        padding: '0.35rem 0.75rem',
-        cursor: 'pointer',
-        backgroundColor: 'transparent',
-        textTransform: 'uppercase',
-        fontSize: 'small',
-        border: 'none',
-        color: (pathname === to) ? 'black' : 'gray',
-        fontWeight: (pathname === to) ? '600' : 'normal',
-      }}
       layout
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}

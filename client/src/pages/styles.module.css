@@ -1,0 +1,20 @@
+.landingPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.landing {
+    display: grid;
+    place-content: center;
+}
+
+.loginWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 1300px;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 8px;
+}

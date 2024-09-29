@@ -6,7 +6,8 @@ export default function AnimatedPageWrapper({ children }: { children: ReactNode 
     <AnimatePresence>
       <motion.div
         style={{
-          padding: '0px 2rem',
+          padding: '2rem',
+          borderRadius: '4px',
         }}
         layout
         initial={{ opacity: 0 }}
