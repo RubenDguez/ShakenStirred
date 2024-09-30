@@ -10,6 +10,10 @@ export default function useAuthorization(options = {secure: true}) {
         return window.localStorage.getItem('jwt');
     },[]);
 
+    const removeJwt = useCallback(() => {
+        window.localStorage.removeItem('jwt');
+    }, []);
+
     const isJwtExpired = useCallback(() => {
         const jwt = getJwt();
         if (!jwt) return true;
@@ -24,5 +28,5 @@ export default function useAuthorization(options = {secure: true}) {
         if (options.secure && getJwt() === null) throw json({ message: 'Unauthorized' }, { status: 401 });
     }, [getJwt, options.secure]);
 
-    return {setJwt, getJwt, isJwtExpired}
+    return {setJwt, getJwt, isJwtExpired, removeJwt}
 }

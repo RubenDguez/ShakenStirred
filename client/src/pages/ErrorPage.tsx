@@ -26,6 +26,7 @@ const ErrorPage = () => {
         display: 'grid',
         placeContent: 'center',
         height: '98vh',
+        backgroundColor: 'var(--linearPrimarySecondary)'
       }}
     >
       <div

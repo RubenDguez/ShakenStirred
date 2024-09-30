@@ -30,7 +30,7 @@
 }
 
 .form {
-    background-color: var(--primary);
+    background-image: var(--linearPrimarySecondary);
     display: flex;
     flex-direction: column;
     align-items: center;

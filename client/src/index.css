@@ -17,6 +17,13 @@
     --primary: #2f27ce;
     --secondary: #dddbff;
     --accent: #443dff;
+
+    --linearPrimarySecondary: linear-gradient(#2f27ce, #dddbff);
+    --linearPrimaryAccent: linear-gradient(#2f27ce, #443dff);
+    --linearSecondaryAccent: linear-gradient(#dddbff, #443dff);
+    --radialPrimarySecondary: radial-gradient(#2f27ce, #dddbff);
+    --radialPrimaryAccent: radial-gradient(#2f27ce, #443dff);
+    --radialSecondaryAccent: radial-gradient(#dddbff, #443dff);
 }
 
 body {
