@@ -7,7 +7,7 @@
 }
 
 .brand {
-    color: var(--primary);
+    color: var(--accent-400);
     font-weight: 400;
     font-size: 1.75rem;
     cursor: pointer;
@@ -18,6 +18,11 @@
     align-items: center;
     gap: 3rem;
     background-color: transparent;
+}
+
+.buttons {
+    display: flex;
+    gap: 1.5rem;
 }
 
 .avatar {
@@ -35,5 +40,5 @@
     background-color: transparent;
     text-transform: uppercase;
     font-size: small;
-    color: var(--accent);
+    color: var(--accent-400);
 }

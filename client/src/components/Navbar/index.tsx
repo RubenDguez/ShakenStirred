@@ -31,13 +31,14 @@ export default function Navbar() {
         Shake &apos;N Stirred
       </motion.h2>
       <div className={`${styles.buttonSection}`}>
-        <motion.div layout>
+        <motion.div className={`${styles.buttons}`} layout>
           {NAVIGATION_BUTTONS.map((button) => (
             <NavbarButton key={button.label} to={button.to} action={button.action}>
               {button.label}
             </NavbarButton>
           ))}
         </motion.div>
+
         <NavbarAvatar src="/Argenis.jpeg" />
       </div>
     </motion.nav>
