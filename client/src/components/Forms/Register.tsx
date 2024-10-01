@@ -81,12 +81,13 @@ export default function Register({ setIsLogin }: { setIsLogin: Dispatch<React.Se
         setJwt(response.token);
 
         formRef.current?.reset();
+        navigate(0);
       } catch (error) {
         const ERROR = error as string;
         setError(ERROR);
       }
     },
-    [setJwt],
+    [setJwt, navigate],
   );
 
   const handleSwitchLoginSignup = useCallback(

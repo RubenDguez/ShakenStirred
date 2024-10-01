@@ -34,7 +34,7 @@ export default function User() {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'start',
-            gap: '2rem',
+            gap: '1rem',
           }}
         >
           <div
@@ -59,10 +59,9 @@ export default function User() {
             style={{
               display: 'flex',
               flexDirection: 'column',
-              gap: '1rem',
             }}
           >
-            <UploadWidget setImage={setUserImage}>Update</UploadWidget>
+            <UploadWidget setImage={setUserImage}>Upload Image</UploadWidget>
           </div>
         </div>
       </div>
@@ -164,10 +163,14 @@ function UserForm({ image }: { image: string }) {
           name="email"
         />
       </div>
-      <div style={{ display: 'flex', justifyContent: 'right', marginTop: '2rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'right', marginTop: '2rem', gap: '1rem' }}>
+        <button onClick={() => { navigate('/app') }}>
+          Cancel
+        </button>
         <button onClick={(e) => handleSaveUser(e)} type="submit">
           Save
         </button>
+
       </div>
     </form>
   );
