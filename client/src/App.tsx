@@ -9,7 +9,7 @@ function App() {
   return (
     <main>
       <Navbar />
-      <section style={{ display: 'flex' }}>
+      <section style={{ display: 'flex', paddingTop: '5rem' }}>
         <MainMenu />
         <div style={{ width: '100%' }}>
           <Outlet />

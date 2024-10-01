@@ -24,7 +24,7 @@ export default function useAuthorization(options = {secure: true}) {
     }, [getJwt]);
 
     useEffect(() => {
-        console.clear();
+        // console.clear();
         if (options.secure && getJwt() === null) throw json({ message: 'Unauthorized' }, { status: 401 });
     }, [getJwt, options.secure]);
 

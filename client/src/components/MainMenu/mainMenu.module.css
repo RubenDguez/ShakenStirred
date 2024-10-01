@@ -1,7 +1,14 @@
 .mainMenu {
     display: flex;
     flex-direction: column;
+    background-color: var(--background-50);
+    border: 1px solid var(--accent-100);
+    border-radius: 8px;
+    padding: 1rem;
+    justify-content: space-between;
     width: 200px;
+    max-height: 45vh;
+    height: 45vh;
 }
 
 .user {
@@ -38,13 +45,17 @@
     height: 1.1rem;
     padding: 1rem;
     border-radius: 20px;
-    background-color: var(--accent-100);
+    background-color: var(--accent-200);
     color: var(--secondary-500);
     margin-top: 1rem;
     cursor: pointer;
     overflow: hidden;
     font-weight: 600;
     font-size: small;
+}
+
+.active {
+    background-color: var(--primary-200);
 }
 
 .asideActionButton:hover {

@@ -11,10 +11,6 @@ interface IButtons {
 }
 
 const NAVIGATION_BUTTONS: Array<IButtons> = [
-  { label: 'home', to: '/app' },
-  { label: 'new', to: '/app/new' },
-  { label: 'my drinks', to: '/app/my-drinks' },
-  { label: 'search', to: '/app/search' },
   { label: 'logout', to: '/', action: 'logout' },
 ];
 
@@ -38,28 +34,8 @@ export default function Navbar() {
             </NavbarButton>
           ))}
         </motion.div>
-
-        <NavbarAvatar src="/Argenis.jpeg" />
       </div>
     </motion.nav>
-  );
-}
-
-function NavbarAvatar({ src }: { src: string }) {
-  const navigate = useNavigate();
-  return (
-    <motion.div
-      onClick={() => navigate('/app/user')}
-      style={{ backgroundImage: `url(${src})` }}
-      className={`${styles.avatar}`}
-      layout
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1, ease: 'linear' }}
-      exit={{ opacity: 0, scale: 0 }}
-      whileHover={{ scale: 1.25, rotate: '5deg' }}
-      whileTap={{ scale: 1.15, rotate: '0deg' }}
-    ></motion.div>
   );
 }
 

@@ -46,6 +46,13 @@ export default function Main() {
             <p>16</p>
             <button>view</button>
           </Card>
+          <Card>
+            <header>
+              <h2>drinks reviews</h2>
+            </header>
+            <p>16</p>
+            <button>view</button>
+          </Card>
         </div>
       </div>
     </AnimatedPageWrapper>
