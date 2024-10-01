@@ -5,11 +5,12 @@ import { GrLogout, GrTable } from 'react-icons/gr';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { IoHomeOutline } from 'react-icons/io5';
 
-import { useCallback, useContext } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAuthorization from '../../hooks/useAuthorization';
 import styles from './mainMenu.module.css';
 import { AppContext } from '../../App';
+import { GiInspiration } from 'react-icons/gi';
 
 interface IButton {
   icon: JSX.Element;
@@ -23,11 +24,18 @@ const asideActions: Array<IButton> = [
   { icon: <IoIosAddCircleOutline />, label: 'New', to: '/app/new' },
   { icon: <GrTable />, label: 'My Drinks', to: '/app/my-drinks' },
   { icon: <FiSearch />, label: 'Search', to: '/app/search' },
+  { icon: <GiInspiration />, label: 'Inspiration', to: '/app/inspiration' }
 ];
 
 export default function MainMenu() {
+  const [userImage, setUserImage] = useState('');
   const navigate = useNavigate();
   const app = useContext(AppContext);
+
+  useEffect(() => {
+    const userImg = app?.avatar || '/user-avatar-placeholder.jpg';
+    setUserImage(userImg);
+  }, [app]);
 
   return (
     <aside className={`${styles.mainMenu}`}>
@@ -37,7 +45,7 @@ export default function MainMenu() {
             onClick={() => navigate('/app/user')}
             transition={{ ease: 'easeInOut', duration: 1 }}
             whileHover={{ scale: 1.1 }}
-            style={{ backgroundImage: `url(/Argenis.jpeg)` }}
+            style={{ backgroundImage: `url(${userImage})` }}
             className={`${styles.userImage}`}
           ></motion.div>
           <h5><span>{app?.firstName}</span>{' '}<span>{app?.lastName}</span></h5>

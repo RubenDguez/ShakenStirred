@@ -9,4 +9,5 @@ interface IUser {
     lastName: string;
     createdAt: Date;
     updatedAt: Date;
+    avatar: string;
 }

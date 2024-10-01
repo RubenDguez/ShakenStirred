@@ -1,18 +1,20 @@
-import { motion } from 'framer-motion';
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
-import AnimatedPageWrapper from '../../components/AnimatedPageWrapper';
-import useAuthorization from '../../hooks/useAuthorization';
+import { useCallback, useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../App';
 import { updateUser } from '../../api/userAPI';
-import { useNavigate } from 'react-router-dom';
+import AnimatedPageWrapper from '../../components/AnimatedPageWrapper';
+import UploadWidget from '../../components/UploadWidget';
+import useAuthorization from '../../hooks/useAuthorization';
 
 export default function User() {
-  const updatePictureInputRef = useRef<HTMLInputElement>(null);
+  const [userImage, setUserImage] = useState('');
   useAuthorization();
+  const app = useContext(AppContext);
 
-  const handleUpdatePicture = useCallback(() => {
-    updatePictureInputRef.current?.click();
-  }, []);
+  useEffect(() => {
+    const avatar = app?.avatar || '/user-avatar-placeholder.jpg';
+    setUserImage(avatar);
+  }, [app]);
 
   return (
     <AnimatedPageWrapper>
@@ -25,37 +27,34 @@ export default function User() {
           padding: '3rem',
         }}
       >
-        <UserForm />
+        <UserForm image={userImage} />
         <div
           style={{
             display: 'flex',
-            alignItems: 'start',
+            flexDirection: 'column',
+            alignItems: 'center',
             justifyContent: 'start',
+            gap: '2rem',
           }}
         >
-          <motion.div
-            onClick={handleUpdatePicture}
-            transition={{ duration: 1 }}
-            whileHover={{ scale: 1.15, rotate: '5deg' }}
-            whileTap={{ scale: 1.05, rotate: '0deg' }}
+          <div
             style={{
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'end',
               padding: '1rem',
-              backgroundImage: `url(/Argenis.jpeg)`,
+              backgroundImage: `url(${userImage})`,
               width: 200,
               height: 200,
               backgroundSize: 'cover',
               borderRadius: '50%',
               backgroundPosition: 'center',
-              cursor: 'pointer',
               overflow: 'hidden',
               color: 'white',
               textTransform: 'uppercase',
               fontWeight: '600',
             }}
-          ></motion.div>
+          ></div>
           <div
             style={{
               display: 'flex',
@@ -63,7 +62,7 @@ export default function User() {
               gap: '1rem',
             }}
           >
-            <input ref={updatePictureInputRef} style={{ display: 'none' }} type="file" name="image" id="image" accept="image/png, image/jpeg" />
+            <UploadWidget setImage={setUserImage}>Update</UploadWidget>
           </div>
         </div>
       </div>
@@ -71,7 +70,7 @@ export default function User() {
   );
 }
 
-function UserForm() {
+function UserForm({ image }: { image: string }) {
   const app = useContext(AppContext);
   const { getJwt } = useAuthorization();
   const navigate = useNavigate();
@@ -81,26 +80,30 @@ function UserForm() {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
 
-  const handleSaveUser = useCallback(async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
+  const handleSaveUser = useCallback(
+    async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
 
-    try {
-      await updateUser(
-        {
-          username,
-          firstName,
-          lastName,
-          email,
-          updatedAt: new Date(),
-        },
-        getJwt()!,
-      );
-      navigate(0);
-    } catch (error) {
-      const ERROR = error as Error;
-      console.error(ERROR.message);
-    }
-  }, [username, firstName, lastName, email, getJwt, navigate]);
+      try {
+        await updateUser(
+          {
+            username,
+            firstName,
+            lastName,
+            email,
+            updatedAt: new Date(),
+            avatar: image,
+          },
+          getJwt()!,
+        );
+        navigate(0);
+      } catch (error) {
+        const ERROR = error as Error;
+        console.error(ERROR.message);
+      }
+    },
+    [username, firstName, lastName, email, getJwt, navigate, image],
+  );
 
   useEffect(() => {
     const _username = app?.username || '';

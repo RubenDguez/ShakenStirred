@@ -10,10 +10,11 @@ interface UserAttributes {
   role: string;
   firstName: string;
   lastName: string;
+  avatar: string;
 }
 
 // Define the optional attributes for creating a new User
-interface UserCreationAttributes extends Optional<UserAttributes, 'id' | 'role' | 'firstName' | 'lastName'> {}
+interface UserCreationAttributes extends Optional<UserAttributes, 'id' | 'role' | 'firstName' | 'lastName' | 'avatar'> {}
 
 // Define the User class extending Sequelize's Model
 export class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
@@ -24,6 +25,7 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
   public role!: string;
   public firstName!: string;
   public lastName!: string;
+  public avatar!: string;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -60,13 +62,23 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       },
       role: {
         type: DataTypes.STRING,
+        allowNull: false,
         defaultValue: 'user',
       },
       firstName: {
         type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: ''
       },
       lastName: {
         type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: ''
+      },
+      avatar: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: ''
       }
     },
     {

@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.static('../client/dist'));
 
 app.use(express.json());
+
 app.use(routes);
 
 sequelize.sync({ force: forceDatabaseRefresh, logging: false }).then(() => {

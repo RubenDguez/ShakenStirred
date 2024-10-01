@@ -42,6 +42,10 @@ export const router = createBrowserRouter([
         element: <SearchDrinks />,
       },
       {
+        path: '/app/inspiration',
+        element: <SearchDrinks />,
+      },
+      {
         path: '/app/user',
         element: <User />,
       },

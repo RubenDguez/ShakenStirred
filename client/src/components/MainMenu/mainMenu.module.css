@@ -7,9 +7,9 @@
     padding: 1rem;
     justify-content: space-between;
     width: 200px;
-    max-height: 50vh;
-    min-height: 50vh;
-    height: 50vh;
+    max-height: 60vh;
+    min-height: 60vh;
+    height: 60vh;
     overflow-y: scroll;
 }
 

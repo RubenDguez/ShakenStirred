@@ -14,6 +14,7 @@ const getUser = async (username: string, token: string) => {
     }
 
     const data: IUser = await response.json();
+
     return data;
   } catch (error) {
     const ERROR = error as Error;
