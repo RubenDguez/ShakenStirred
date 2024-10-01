@@ -77,15 +77,23 @@
     --linearSecondaryAccent: linear-gradient(#f07bac, #ea4d63);
     --radialPrimarySecondary: radial-gradient(#be26e6, #f07bac);
     --radialPrimaryAccent: radial-gradient(#be26e6, #ea4d63);
-    --radialSecondaryAccent: radial-gradient(#f07bac, #ea4d63);
-    
-    
+    --radialSecondaryAccent: radial-gradient(#f07bac, #ea4d63);    
 }
 
 body {
     background-color: var(--background-50);
     background-image: radial-gradient(var(--accent-300) 0.5px, var(--background-50) 0.5px);
     background-size: 15px 15px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    padding: 0px 2rem;
+    max-width: 1200px;
+    height: 100vh;
+    background-color: transparent;
 }
 
 div, form, h1, h2, h3, h4, h5, h6, p, span, label {

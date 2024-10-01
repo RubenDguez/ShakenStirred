@@ -1,0 +1,52 @@
+.mainMenu {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--accent-300);
+}
+
+.user h5 {
+    font-weight: 600;
+    color: var(--accent-200);
+}
+
+.userImage {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: var(--accent-100);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.asideActionButton {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 0.65rem;
+    height: 1.1rem;
+    padding: 1rem;
+    border-radius: 20px;
+    background-color: var(--accent-100);
+    color: var(--secondary-500);
+    margin-top: 1rem;
+    cursor: pointer;
+    overflow: hidden;
+    font-weight: 600;
+    font-size: small;
+}
+
+.asideActionButton:hover {
+    background-color: var(--primary-200);
+}

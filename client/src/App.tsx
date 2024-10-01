@@ -1,24 +1,20 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import useAuthorization from './hooks/useAuthorization';
+import MainMenu from './components/MainMenu';
 
 function App() {
   useAuthorization();
 
   return (
-    <main
-      style={{
-        margin: '0px auto',
-        padding: '0px 2rem',
-        maxWidth: '1200px',
-        height: '100vh',
-        display: 'grid',
-        gridTemplateRows: 'auto 1fr auto',
-        backgroundColor: 'transparent',
-      }}
-    >
+    <main>
       <Navbar />
-      <Outlet />
+      <section style={{ display: 'flex' }}>
+        <MainMenu />
+        <div style={{ width: '100%' }}>
+          <Outlet />
+        </div>
+      </section>
     </main>
   );
 }

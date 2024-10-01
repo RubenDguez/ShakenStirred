@@ -19,7 +19,7 @@ export default function User() {
           display: 'flex',
           justifyContent: 'space-between',
           gap: '3rem',
-          padding: '3rem'
+          padding: '3rem',
         }}
       >
         <UserForm />
