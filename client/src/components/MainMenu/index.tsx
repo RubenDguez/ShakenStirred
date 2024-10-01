@@ -5,10 +5,11 @@ import { GrLogout, GrTable } from 'react-icons/gr';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { IoHomeOutline } from 'react-icons/io5';
 
-import { useCallback } from 'react';
+import { useCallback, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAuthorization from '../../hooks/useAuthorization';
 import styles from './mainMenu.module.css';
+import { AppContext } from '../../App';
 
 interface IButton {
   icon: JSX.Element;
@@ -26,6 +27,7 @@ const asideActions: Array<IButton> = [
 
 export default function MainMenu() {
   const navigate = useNavigate();
+  const app = useContext(AppContext);
 
   return (
     <aside className={`${styles.mainMenu}`}>
@@ -38,7 +40,7 @@ export default function MainMenu() {
             style={{ backgroundImage: `url(/Argenis.jpeg)` }}
             className={`${styles.userImage}`}
           ></motion.div>
-          <h5>Argenis Ruben Dominguez</h5>
+          <h5><span>{app?.firstName}</span>{' '}<span>{app?.lastName}</span></h5>
         </div>
         <div>
         {asideActions.map((action) => (

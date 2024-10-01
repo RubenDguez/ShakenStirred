@@ -111,6 +111,6 @@ button, input {
 button {
     text-transform: uppercase;
     font-weight: 600;
-    background-color: var(--accent-500);
-    color: white;
+    border: 1px solid var(--accent-300);
+    color: var(--accent-300);
 }

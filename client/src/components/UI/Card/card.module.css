@@ -1,18 +1,20 @@
 .card {
-    background-color: var(--primary-100);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--background-50);
+    border: 1px solid var(--accent-100);
     border-radius: 8px;
-    padding: 2rem;
+    padding: 1rem;
+    color: var(--accent-300);
 }
 
 .card header {
     text-transform: uppercase;
+    color: var(--accent-300);
 }
 
 .card:hover {
     background-color: var(--primary-100);
     cursor: pointer;
-}
-
-.card:hover button {
-    background-color: var(--primary-500);
 }
