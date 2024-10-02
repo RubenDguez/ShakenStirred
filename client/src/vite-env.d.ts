@@ -11,3 +11,14 @@ interface IUser {
     updatedAt: Date;
     avatar: string;
 }
+
+interface IDrink {
+    id: number;
+    name: string;
+    category: string;
+    instructions: string;
+    img: string;
+    createdAt: Date;
+    updatedAt: Date;
+    userId: number;
+}

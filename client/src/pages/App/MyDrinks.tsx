@@ -2,18 +2,26 @@ import { useNavigate } from 'react-router-dom';
 import AnimatedPageWrapper from '../../components/AnimatedPageWrapper';
 import Card from '../../components/UI/Card';
 import useAuthorization from '../../hooks/useAuthorization';
-
-const myDrinks = [
-  { name: 'Ultimate Margarita' },
-  { name: 'Ultimate Margarita' },
-  { name: 'Ultimate Margarita' },
-  { name: 'Ultimate Margarita' },
-  { name: 'Ultimate Margarita' }
-];
+import { useContext, useEffect, useState } from 'react';
+import { getMyDrinks } from '../../api/drinkAPI';
+import { AppContext } from '../../App';
 
 export default function MyDrinks() {
-  useAuthorization();
-  const navigate = useNavigate()
+  const [myDrinks, setMyDrinks] = useState<Array<IDrink>>([]);
+  const { getJwt } = useAuthorization();
+  const navigate = useNavigate();
+  const app = useContext(AppContext);
+
+  useEffect(() => {
+    async function fetch() {
+      const response = await getMyDrinks(app!.id, getJwt()!);
+
+      if (response.length) {
+        setMyDrinks(response);
+      }
+    }
+    fetch();
+  }, [app, getJwt]);
 
   return (
     <AnimatedPageWrapper>
@@ -22,7 +30,7 @@ export default function MyDrinks() {
         {myDrinks.map((drink, index) => (
           <Card key={drink.name + index} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <div style={{ width: 64, height: 64, borderRadius: '50%', backgroundColor: 'var(--secondary-200)' }}></div>
+              <div style={{ width: 64, height: 64, borderRadius: '50%', backgroundColor: 'var(--secondary-200)', backgroundImage: `url(${drink.img})`, backgroundPosition: 'center', backgroundSize: 'cover' }}></div>
               <h4>{drink.name}</h4>
             </div>
             <button onClick={() => navigate(`/app/drinks/${index}`)}>View</button>
