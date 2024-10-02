@@ -1,0 +1,121 @@
+.page {
+    padding: 0px 2rem;
+}
+
+.header {
+    font-weight: 300;
+    text-transform: uppercase;
+    color: var(--secondary-200)
+}
+
+.error {
+    background-color: var(--accent-100);
+    border-radius: 4px;
+    color: var(--accent-300);
+    font-size: small;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.drinkImageGroup {
+    display: flex;
+    justify-content: end;
+}
+
+.drinkImageGroup > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.drinkImage {
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 2rem;
+    gap: 1.5rem;
+}
+
+.ingredientsForm {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+}
+
+.ingFormField {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-grow: 1;
+}
+
+.addIngredientGroup {
+    display: flex;
+    align-items: end;
+}
+
+.addIngredientButton {
+    display: none;
+}
+
+.addIngredientButtonPlus {
+    font-weight: 100;
+    color: var(--accent-100);
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+.addIngredientButtonPlus:hover {
+    color: var(--accent-200);
+}
+
+.ingredientsTable {
+    color: var(--accent-300);
+    text-align: left;
+}
+
+.ingredientsTable thead > tr {
+    display: flex;
+    gap: 0.35rem;
+}
+
+.ingredientsTable th, td {
+    flex-grow: 1;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--accent-200);
+    border-radius: 4px;
+}
+
+.ingredientsForm input {
+    flex-grow: 1;
+}
+
+.formField {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+.formField label {
+    color: var(--accent-300);
+}
+
+.formField textarea {
+    resize: none;
+}
+
+.formActions {
+    display: flex;
+    flex-direction: row-reverse;
+}
